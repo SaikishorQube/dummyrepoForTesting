@@ -9,15 +9,19 @@ jobs:
         steps:
             - name: Incrementing Build Version Name and Build Version Number
               run: |
-               IFS='.' read -ra version_parts <<< "1.0.0"
-               major="${version_parts[0]}"
-               minor="${version_parts[1]}"
-               patch="${version_parts[2]}"
-               patch=${patch:-0}
-               echo "Original patch value: $patch"
-               ((patch ++))
-               echo "Incremented patch value: $patch"
-               patch_increased_version="$major.$minor.$patch"
-               echo "$patch"
-               echo "BUILD_VERSION_NAME=$patch_increased_version"
-    
+                IFS='.' read -ra version_parts <<< "1.0.0"
+                major="${version_parts[0]}"
+                minor="${version_parts[1]}"
+                patch="${version_parts[2]}"
+                
+                echo "Original patch value: $patch"
+                
+                ((patch++))
+                
+                echo "Incremented patch value: $patch"
+                
+                patch_increased_version="$major.$minor.$patch"
+                
+                echo "Final patch value: $patch"
+                echo "BUILD_VERSION_NAME=$patch_increased_version"
+        
