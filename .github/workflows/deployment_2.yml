@@ -14,7 +14,9 @@ jobs:
                minor="${version_parts[1]}"
                patch="${version_parts[2]}"
                patch=$((patch))
+               echo "Original patch value: $patch"
                ((patch ++))
+               echo "Incremented patch value: $patch"
                patch_increased_version="$major.$minor.$patch"
                echo "$patch"
                echo "BUILD_VERSION_NAME=$patch_increased_version"
