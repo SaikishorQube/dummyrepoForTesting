@@ -16,7 +16,7 @@ jobs:
                 
                 echo "Original patch value: $patch"
                 
-                ((patch++))
+                patch=$((patch + 1))
                 
                 echo "Incremented patch value: $patch"
                 
