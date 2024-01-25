@@ -10,11 +10,14 @@ jobs:
         name: Manual approval
         runs-on: ubuntu-latest
         steps:
-        - name: Waiting for manual approval
-          uses: trstringer/manual-approval@v1
-          with:
-            secret: '${{ github.token }}'
-            approvers: SaikishorQube
-            minimum-approvals: 1
-            issue-title: "Publishing test Production Android & iOS build"
-            issue-body: "Please approve or deny the publishing"
+            - name: Incrementing Build Version Name and Build Version Number
+              run: |
+               IFS='.' read -ra version_parts <<< "1.0.0"
+               major="${version_parts[0]}"
+               minor="${version_parts[1]}"
+               patch="${version_parts[2]}"
+               ((patch++))
+               patch_increased_version="$major.$minor.$patch"
+               echo "$patch"
+               echo "BUILD_VERSION_NAME=$patch_increased_version"
+    
